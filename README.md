@@ -2,52 +2,49 @@
 
 Um sistema web para controle de finanças pessoais desenvolvido com Node.js, Express e PostgreSQL.
 
+## Tecnologias Utilizadas
+
+- Node.js v18
+- Express v4.18.2
+- PostgreSQL v13
+- EJS v3.1.9
+- Tailwind CSS v3.3.6
+- Docker & Docker Compose
+- Nginx
+
 ## Requisitos
 
-- Node.js (v14 ou superior)
-- PostgreSQL (v12 ou superior)
-- npm ou yarn
+- Docker e Docker Compose
+- Git
 
 ## Instalação
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/financas.git
+git clone https://github.com/PedroRezende73/Sistema-Financas.git
 cd financas
 ```
 
-2. Instale as dependências:
-```bash
-npm install
-```
-
-3. Configure as variáveis de ambiente:
+2. Configure as variáveis de ambiente:
 - Copie o arquivo `.env.example` para `.env`
 - Ajuste as variáveis conforme necessário
 
-4. Crie o banco de dados:
-```sql
-CREATE DATABASE financas;
-```
-
-5. Execute as migrações (se houver):
+3. Inicie os containers:
 ```bash
-npm run migrate
+docker compose up -d
 ```
 
-## Executando o Projeto
-
-Para desenvolvimento:
+4. Execute as migrações do banco de dados:
 ```bash
-npm run dev
+docker exec financas_node npm run migrate
 ```
 
-Para produção:
-```bash
-npm start
-```
+## Acessando o Sistema
 
-O servidor estará disponível em `http://localhost:3000/financas`
+- Aplicação: http://localhost/financas
+- pgAdmin: http://localhost:5050
+  - Email: admin@admin.com
+  - Senha: admin
 
 ## Estrutura do Projeto
 
@@ -58,6 +55,7 @@ app/
 │   ├── controllers/   # Controladores
 │   ├── models/        # Modelos
 │   ├── routes/        # Rotas
+│   ├── styles/        # Arquivos de estilo (CSS/SCSS)
 │   ├── views/         # Views
 │   ├── middlewares/   # Middlewares
 │   └── utils/         # Utilitários
@@ -65,12 +63,33 @@ app/
 └── app.js            # Arquivo principal
 ```
 
-## Funcionalidades
 
-- Autenticação de usuários
-- Dashboard financeiro
-- Controle de receitas e despesas
-- Relatórios financeiros
+## Desenvolvimento
+
+Para desenvolvimento local:
+
+1. Instale as dependências:
+```bash
+cd app
+npm install
+```
+
+2. Compile os estilos CSS:
+```bash
+npm run build:css
+```
+
+3. Execute o servidor em modo desenvolvimento:
+```bash
+npm run dev
+```
+
+## Scripts Disponíveis
+
+- `npm run dev`: Inicia o servidor em modo desenvolvimento
+- `npm run build:css`: Compila os estilos CSS
+- `npm run migrate`: Executa as migrações do banco de dados
+- `npm run migrate:reset`: Reseta e executa as migrações do banco de dados
 
 ## Contribuição
 
