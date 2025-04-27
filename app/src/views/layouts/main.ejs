@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Financeiro</title>
+    <link href="/financas/css/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <% if (locals.user) { %>
+        <nav class="bg-white shadow-lg">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="flex justify-between h-16">
+                    <div class="flex">
+                        <a href="/financas/dashboard" class="flex items-center text-primary-600">
+                            Sistema Financeiro
+                        </a>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="text-gray-700 mr-4"><%= user.name %></span>
+                        <a href="/financas/logout" class="text-red-600 hover:text-red-800">Sair</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    <% } %>
+
+    <main class="container mx-auto px-4 py-8">
+        <%- body %>
+    </main>
+</body>
+</html> 

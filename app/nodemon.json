@@ -1,0 +1,15 @@
+{
+  "watch": [
+    "src/**/*.js",
+    "src/**/*.ejs",
+    "app.js"
+  ],
+  "ext": "js,json,ejs",
+  "ignore": [
+    "node_modules",
+    "public"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  }
+} 
