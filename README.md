@@ -101,4 +101,4 @@ npm run dev
 
 ## Licença
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes. 
+Este projeto está sob a licença MIT. Veja o arquivo [https://pt.wikipedia.org/wiki/Licen%C3%A7a_MIT](LICENSE) para mais detalhes. 
