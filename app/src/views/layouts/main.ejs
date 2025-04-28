@@ -5,34 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Financeiro</title>
     <link href="/financas/css/style.css" rel="stylesheet">
-    <script>
-        // Verifica se o usuário já tem uma preferência de tema
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-
-        // Função para alternar o tema
-        function toggleTheme() {
-            const html = document.documentElement;
-            const isDark = html.classList.contains('dark');
-            
-            if (isDark) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-    </script>
-    <style>
-        /* Transição suave para todas as propriedades */
-        * {
-            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
-        }
-    </style>
+    <script src="/financas/js/main.js"></script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900">
     <% if (locals.user) { %>

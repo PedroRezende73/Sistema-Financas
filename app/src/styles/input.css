@@ -2,6 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    color-scheme: light;
+    --bg-color: #f3f4f6;
+    --text-color: #1f2937;
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
 /* Estilos para o modo dark */
 .dark {
     color-scheme: dark;
@@ -14,5 +31,52 @@
 
 /* Transição suave para todas as propriedades */
 * {
-    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out !important;
+}
+
+/* Estilos específicos para o botão de exibir senha */
+.relative {
+    position: relative !important;
+}
+
+.absolute {
+    position: absolute !important;
+}
+
+.inset-y-0 {
+    top: 0 !important;
+    bottom: 0 !important;
+}
+
+.right-0 {
+    right: 0 !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.items-center {
+    align-items: center !important;
+}
+
+.pr-3 {
+    padding-right: 0.75rem !important;
+}
+
+.h-5 {
+    height: 1.25rem !important;
+}
+
+.w-5 {
+    width: 1.25rem !important;
+}
+
+/* Garantir que o botão tenha dimensões */
+button[type="button"] {
+    min-width: 1.25rem !important;
+    min-height: 1.25rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 } 
