@@ -57,7 +57,7 @@ class AuthController {
 
       req.session.user = {
         id: user.id,
-        name: user.nome,
+        nome: user.nome,
         email: user.email
       };
       

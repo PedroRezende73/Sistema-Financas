@@ -63,7 +63,6 @@ app.use('/financas/dashboard', dashboardRoutes);
 // Rota padrão
 app.get('/financas', (req, res) => {
   if (req.session.user) {
-    console.log('------------------------------------------------------------------------------------Usuário logado:', req.session.user);
     res.redirect('/financas/dashboard');
   } else {
     res.redirect('/financas/login');

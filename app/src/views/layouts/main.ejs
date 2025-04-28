@@ -5,20 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Financeiro</title>
     <link href="/financas/css/style.css" rel="stylesheet">
+    <script>
+        // Verifica se o usuário já tem uma preferência de tema
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Função para alternar o tema
+        function toggleTheme() {
+            const html = document.documentElement;
+            const isDark = html.classList.contains('dark');
+            
+            if (isDark) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+    </script>
+    <style>
+        /* Transição suave para todas as propriedades */
+        * {
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 dark:bg-gray-900">
     <% if (locals.user) { %>
-        <nav class="bg-white shadow-lg">
+        <nav class="bg-white dark:bg-gray-800 shadow-lg">
             <div class="max-w-7xl mx-auto px-4">
                 <div class="flex justify-between h-16">
-                    <div class="flex">
-                        <a href="/financas/dashboard" class="flex items-center text-primary-600">
+                    <div class="flex items-center">
+                        <a href="/financas/dashboard" class="flex items-center text-primary-600 dark:text-primary-400">
                             Sistema Financeiro
                         </a>
                     </div>
-                    <div class="flex items-center">
-                        <span class="text-gray-700 mr-4"><%= user.name %></span>
-                        <a href="/financas/logout" class="text-red-600 hover:text-red-800">Sair</a>
+                    <div class="flex items-center gap-4">
+                        <button onclick="toggleTheme()" class="w-10 h-10 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors flex items-center justify-center">
+                            <svg class="w-6 h-6 text-gray-700 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path class="dark:hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                                <path class="hidden dark:block" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                        </button>
+                        <span class="text-gray-700 dark:text-gray-300"><%= user.name %></span>
+                        <a href="/financas/logout" class="text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300">Sair</a>
                     </div>
                 </div>
             </div>
