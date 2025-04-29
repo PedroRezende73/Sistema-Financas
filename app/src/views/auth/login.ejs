@@ -28,13 +28,13 @@
                            value="<%= locals.email || '' %>">
                 </div>
                 <div>
-                    <label for="senha" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Senha</label>
+                    <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Senha</label>
                     <div class="relative">
-                        <input id="senha" name="senha" type="password" required 
+                        <input id="password" name="password" type="password" required 
                                class="appearance-none relative block w-full px-3 py-2 border border-gray-300 dark:border-gray-600 placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white dark:bg-gray-700 rounded-md focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm pr-10" 
                                placeholder="Senha">
                         <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none z-10">
-                            <button type="button" onclick="togglePassword()" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 pointer-events-auto">
+                            <button type="button" onclick="togglePassword('password')" class="text-gray-400 hover:text-gray-500 dark:hover:text-gray-300 pointer-events-auto">
                                 <svg id="eyeIcon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -63,21 +63,3 @@
         </form>
     </div>
 </div>
-
-<script>
-function togglePassword() {
-    const senhaInput = document.getElementById('senha');
-    const eyeIcon = document.getElementById('eyeIcon');
-    const eyeOffIcon = document.getElementById('eyeOffIcon');
-    
-    if (senhaInput.type === 'password') {
-        senhaInput.type = 'text';
-        eyeIcon.classList.add('hidden');
-        eyeOffIcon.classList.remove('hidden');
-    } else {
-        senhaInput.type = 'password';
-        eyeIcon.classList.remove('hidden');
-        eyeOffIcon.classList.add('hidden');
-    }
-}
-</script> 

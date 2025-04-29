@@ -2,15 +2,15 @@ const db = require('../config/database');
 const bcrypt = require('bcrypt');
 
 class User {
-  static async create({ nome, email, senha }) {
+  static async create({ name, email, password }) {
     try {
-      const hashedPassword = await bcrypt.hash(senha, 10);
+      const hashedPassword = await bcrypt.hash(password, 10);
       const query = `
-        INSERT INTO usuarios (nome, email, senha)
+        INSERT INTO users (name, email, password)
         VALUES ($1, $2, $3)
-        RETURNING id, nome, email
+        RETURNING id, name, email
       `;
-      const values = [nome, email, hashedPassword];
+      const values = [name, email, hashedPassword];
       const result = await db.query(query, values);
       return result.rows[0];
     } catch (error) {
@@ -21,7 +21,7 @@ class User {
 
   static async findByEmail(email) {
     try {
-      const query = 'SELECT * FROM usuarios WHERE email = $1';
+      const query = 'SELECT * FROM users WHERE email = $1';
       const result = await db.query(query, [email]);
       return result.rows[0];
     } catch (error) {
@@ -32,7 +32,7 @@ class User {
 
   static async findById(id) {
     try {
-      const query = 'SELECT id, nome, email FROM usuarios WHERE id = $1';
+      const query = 'SELECT id, name, email FROM users WHERE id = $1';
       const result = await db.query(query, [id]);
       return result.rows[0];
     } catch (error) {

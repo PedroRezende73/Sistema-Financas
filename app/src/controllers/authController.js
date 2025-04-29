@@ -1,21 +1,30 @@
-const User = require('../models/Usuario');
+const User = require('../models/User');
 const bcrypt = require('bcrypt');
 
 class AuthController {
   static async register(req, res) {
     try {
-      const { nome, email, senha } = req.body;
+      const { name, email, password, confirmPassword } = req.body;
       
-      const existingUser = await User.findByEmail(email);
-      if (existingUser) {
+      // Validar se as senhas coincidem
+      if (password !== confirmPassword) {
         return res.render('auth/register', { 
-          error: 'Email já cadastrado',
-          nome,
+          error: 'As senhas não coincidem',
+          name,
           email
         });
       }
 
-      const user = await User.create({ nome, email, senha });
+      const existingUser = await User.findByEmail(email);
+      if (existingUser) {
+        return res.render('auth/register', { 
+          error: 'Email já cadastrado',
+          name,
+          email
+        });
+      }
+
+      const user = await User.create({ name, email, password });
       req.session.user = user;
       res.redirect('/financas/dashboard');
     } catch (error) {
@@ -29,7 +38,7 @@ class AuthController {
 
   static async login(req, res) {
     try {
-      const { email, senha } = req.body;
+      const { email, password } = req.body;
       
       const user = await User.findByEmail(email);
       if (!user) {
@@ -40,14 +49,14 @@ class AuthController {
       }
 
       // Verifica se a senha e o hash existem
-      if (!senha || !user.senha) {
+      if (!password || !user.password) {
         return res.render('auth/login', { 
           error: 'Email ou senha inválidos',
           email
         });
       }
 
-      const validPassword = await bcrypt.compare(senha, user.senha);
+      const validPassword = await bcrypt.compare(password, user.password);
       if (!validPassword) {
         return res.render('auth/login', { 
           error: 'Email ou senha inválidos',
@@ -57,7 +66,7 @@ class AuthController {
 
       req.session.user = {
         id: user.id,
-        nome: user.nome,
+        name: user.name,
         email: user.email
       };
       

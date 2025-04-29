@@ -18,3 +18,19 @@ function toggleTheme() {
         localStorage.setItem('theme', 'dark');
     }
 }
+
+function togglePassword(inputId) {
+    const passwordInput = document.getElementById(inputId);
+    const eyeIcon = document.getElementById(inputId === 'password' ? 'eyeIcon' : 'confirmEyeIcon');
+    const eyeOffIcon = document.getElementById(inputId === 'password' ? 'eyeOffIcon' : 'confirmEyeOffIcon');
+    
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.classList.add('hidden');
+        eyeOffIcon.classList.remove('hidden');
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.classList.remove('hidden');
+        eyeOffIcon.classList.add('hidden');
+    }
+}
